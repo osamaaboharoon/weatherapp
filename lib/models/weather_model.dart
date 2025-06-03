@@ -25,7 +25,8 @@ class WeatherModel {
       minTemp: json['forecast']['forecastday'][0]['day']['mintemp_c'],
       weatherCondition: json['forecast']['forecastday'][0]['day']['condition']
           ['text'],
-      image: json['forecast']['forecastday'][0]['day']['condition']['icon'],
+      image:
+          "https:${json['forecast']['forecastday'][0]['day']['condition']['icon']}",
     );
   }
 }

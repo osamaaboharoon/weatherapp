@@ -26,4 +26,21 @@ class WeatherService {
       throw Exception("oops there was an error, try later");
     }
   }
+
+  Future<List<String>> fetchCitySuggestions(String cityName) async {
+    try {
+      final response =
+          await dio.get('$baseUrl/search.json?key=$apiKey&q=$cityName');
+
+      if (response.statusCode == 200) {
+        final List data = response.data;
+        return data.map<String>((item) => item['name'].toString()).toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      print('Suggestion Error: $e');
+      return [];
+    }
+  }
 }
